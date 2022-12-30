@@ -63,25 +63,37 @@ for row in data:
         continue
     print(f"Enviando mensaje a {phone_number} tipo {tipo_mensaje}")
     status = False
+    res_message = ""
     match tipo_mensaje:
         case "TEXTO":
-            status = send_text_message(api_url, session_id, phone_number, message)
+            responde = send_text_message(api_url, session_id, phone_number, message)
+            status = responde['success']
+            res_message = responde['message']
         case "IMAGEN":
-            status = send_image_message(api_url, session_id, phone_number, message)
+            responde = send_image_message(api_url, session_id, phone_number, message)
+            status = responde['success']
+            res_message = responde['message']
         case "DOCUMENTO":
-            status = send_document_message(api_url, session_id, phone_number, message)
+            responde = send_document_message(api_url, session_id, phone_number, message)
+            status = responde['success']
+            res_message = responde['message']
         case "VIDEO":
-            status = send_video_message(api_url, session_id, phone_number, message)
+            responde = send_video_message(api_url, session_id, phone_number, message)
+            status = responde['success']
+            res_message = responde['message']
         case "GIF":
-            status = send_gif_message(api_url, session_id, phone_number, message)
+            responde = send_gif_message(api_url, session_id, phone_number, message)
+            status = responde['success']
+            res_message = responde['message']
         case _:
             status = False
+            res_message = "Tipo de mensaje no valido"
             continue
     
     if not status:
-        data_final.append([phone_number,message,tipo_mensaje,"ERROR"])
+        data_final.append([phone_number,message,tipo_mensaje,"ERROR",res_message])
     else:
-        data_final.append([phone_number,message,tipo_mensaje,"ENVIADO"])
+        data_final.append([phone_number,message,tipo_mensaje,"ENVIADO",res_message])
 
 print(f"-----------------------------------------------------")
 print(f"     Archivo  de resultados: envio_final.xlsx        ")

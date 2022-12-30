@@ -79,11 +79,10 @@ def send_text_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return response_json['success']
+        return response_json
 
     except Exception as e:
-        print(e)
-        return False
+        return {"success": False, "message": "Error al enviar el mensaje"}
 
 
 def send_image_message(api_url, session_id, phone_number, message):
@@ -105,10 +104,10 @@ def send_image_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return response_json['success']
+        return response_json
 
     except Exception as e:
-        return False
+        return {"success": False, "message": "Error al enviar el mensaje"}
 
 
 
@@ -132,10 +131,10 @@ def send_video_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return response_json['success']
+        return response_json
 
     except Exception as e:
-        return False
+        return {"success": False, "message": "Error al enviar el mensaje"}
 
 def send_gif_message(api_url, session_id, phone_number, message):
     try:
@@ -158,10 +157,10 @@ def send_gif_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return response_json['success']
+        return response_json
 
     except Exception as e:
-        return False
+        return {"success": False, "message": "Error al enviar el mensaje"}
 
 
 def send_document_message(api_url, session_id, phone_number, message):
@@ -183,10 +182,10 @@ def send_document_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return response_json['success']
+        return response_json
 
     except Exception as e:
-        return False
+        return {"success": False, "message": "Error al enviar el mensaje"}
 
 
 def read_xlsx_file(file_excel):
