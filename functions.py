@@ -2,10 +2,9 @@ import requests
 import json
 import re
 
-import pyqrcode
+
 
 from PIL import Image
-from pyzbar.pyzbar import decode
 from io import BytesIO
 import base64
 
@@ -47,8 +46,7 @@ def validate_session_name(text):
 
 
 def genera_qr(qr_data):
-    decode_data = decode(Image.open(BytesIO(base64.b64decode(qr_data))))[0].data
-    pyqrcode.create(decode_data).show(quiet_zone=10)
+    Image.open(BytesIO(base64.b64decode(qr_data))).show()
 
 def sleep_check_session(api_url, session_id, total_seconds = 60, interval_seconds = 2):
 

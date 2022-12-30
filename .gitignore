@@ -2,3 +2,4 @@ build
 dist
 *.spec
 __pycache__
+envio_final.xlsx
