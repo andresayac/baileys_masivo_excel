@@ -79,9 +79,10 @@ def send_text_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return True if response_json['data']['status'] in {'authenticated'} else False
+        return response_json['success']
 
     except Exception as e:
+        print(e)
         return False
 
 
@@ -104,7 +105,7 @@ def send_image_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return True if response_json['data']['status'] in {'authenticated'} else False
+        return response_json['success']
 
     except Exception as e:
         return False
@@ -131,7 +132,7 @@ def send_video_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return True if response_json['data']['status'] in {'authenticated'} else False
+        return response_json['success']
 
     except Exception as e:
         return False
@@ -157,7 +158,7 @@ def send_gif_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
-        return True if response_json['data']['status'] in {'authenticated'} else False
+        return response_json['success']
 
     except Exception as e:
         return False
@@ -182,6 +183,7 @@ def send_document_message(api_url, session_id, phone_number, message):
 
         response = requests.request("POST", url, headers=headers, data=payload)
         response_json = json.loads(response.text)
+        return response_json['success']
 
     except Exception as e:
         return False
